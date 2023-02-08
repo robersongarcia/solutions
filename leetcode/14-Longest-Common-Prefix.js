@@ -5,8 +5,11 @@
 var longestCommonPrefix = function(strs) {
     
     let out = "";
+    let aux = "";
 
     for (let i = 0; i < strs.length; i++) {
+        aux="";
+
         if(i===0){
             out = strs[i];
             continue;
@@ -14,8 +17,10 @@ var longestCommonPrefix = function(strs) {
 
         for (let j = 0; j < strs[i].length; j++) {
             
-            if(out[j]===strs[i][j])
+            if(out[j]===strs[i][j]){
+                aux+=out[j];
                 continue;
+            }
             else{
                 out = out.slice(0,j)
                 if(out.length===0)
@@ -23,6 +28,9 @@ var longestCommonPrefix = function(strs) {
                 break;
             }
         }
+
+        if(aux.length < out.length)
+            out = aux;
         
     }
     return out;
@@ -47,3 +55,5 @@ console.log(`example 1: ${longestCommonPrefix(["flower","flow","flight"])}`);
 // Output: ""
 // Explanation: There is no common prefix among the input strings.
 console.log(`example 2: ${longestCommonPrefix( ["dog","racecar","car"])}`)
+
+console.log(`example 3: ${longestCommonPrefix(["ab", "a"])}`);
